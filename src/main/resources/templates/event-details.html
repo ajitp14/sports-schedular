@@ -15,8 +15,8 @@
             <th>Sports</th>
             <th>Team</th>
             <th>Event Name</th>
-            <th>Event Date and Time</th>
-
+            <th>Event Start Date and Time</th>
+            <th>Event End Date and Time</th>
         </tr>
         </thead>
         <tbody>
@@ -24,7 +24,8 @@
             <td th:text="${event.sports}"></td>
             <td th:text="${event.team.teamName}"></td>
             <td th:text="${event.eventName}"></td>
-            <td th:text="${event.eventDateTime}"></td>
+            <td th:text="${event.eventStartDateTime}"></td>
+            <td th:text="${event.eventEndDateTime}"></td>
         </tr>
         </tbody>
     </table>

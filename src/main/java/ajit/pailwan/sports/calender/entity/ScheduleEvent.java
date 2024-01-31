@@ -18,7 +18,10 @@ public class ScheduleEvent {
     private String sports;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime eventDateTime;
+    private LocalDateTime eventStartDateTime;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime eventEndDateTime;
 
     @ManyToOne
     private Team team;

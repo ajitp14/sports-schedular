@@ -11,6 +11,12 @@
     <h2>Schedule Event Form</h2>
     <form action="#" th:action="@{/event-form}" th:object="${scheduleEvent}" method="post">
         <div class="form-group">
+            <label for="team">Team:</label>
+            <select id="team" name="team.id" th:field="*{team}" class="form-control" required>
+                <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.teamName}"></option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="eventName">Event Name:</label>
             <input type="text" id="eventName" name="eventName" th:field="*{eventName}" class="form-control" required>
         </div>
@@ -19,16 +25,14 @@
             <input type="text" id="sports" name="sports" th:field="*{sports}" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="eventDateTime">Event Date and Time:</label>
-            <input type="datetime-local" id="eventDateTime" name="eventDateTime" th:field="*{eventDateTime}" class="form-control" required>
+            <label for="eventStartDateTime">Event Start Date and Time:</label>
+            <input type="datetime-local" id="eventStartDateTime" name="eventStartDateTime" th:field="*{eventStartDateTime}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="eventEndDateTime">Event End Date and Time:</label>
+            <input type="datetime-local" id="eventEndDateTime" name="eventEndDateTime" th:field="*{eventEndDateTime}" class="form-control" required>
         </div>
 
-        <div class="form-group">
-            <label for="team">Team:</label>
-            <select id="team" name="team.id" th:field="*{team}" class="form-control" required>
-                <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.teamName}"></option>
-            </select>
-        </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

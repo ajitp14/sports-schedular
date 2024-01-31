@@ -32,15 +32,17 @@ public class ScheduleEventController {
 
     @PostMapping("/event-form")
     public String submitEventForm(@ModelAttribute ScheduleEvent scheduleEvent,
-                                  @RequestParam("eventDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime eventDateTime) {
-        scheduleEvent.setEventDateTime(eventDateTime);
+                                  @RequestParam("eventStartDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime eventStartDateTime,
+                                  @RequestParam("eventEndDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime eventEndDateTime) {
+        scheduleEvent.setEventStartDateTime(eventStartDateTime);
+        scheduleEvent.setEventEndDateTime(eventEndDateTime);
         scheduleEventRepository.save(scheduleEvent);
         return "redirect:/event-details";
     }
 
     @GetMapping("/event-details")
     public String showEventDetails(Model model) {
-        List<ScheduleEvent> events = scheduleEventRepository.findAllByOrderByEventDateTimeAsc();
+        List<ScheduleEvent> events = scheduleEventRepository.findAllByOrderByEventStartDateTimeAsc();
         model.addAttribute("events", scheduleEventRepository.findAll());
         return "event-details";
     }

@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ScheduleEventRepository extends JpaRepository<ScheduleEvent, Long> {
-    List<ScheduleEvent> findAllByOrderByEventDateTimeAsc();
+
+    List<ScheduleEvent> findAllByOrderByEventStartDateTimeAsc();
 }
