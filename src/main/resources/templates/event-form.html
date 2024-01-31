@@ -1,0 +1,42 @@
+<!-- src/main/resources/templates/event-form.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Event Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Schedule Event Form</h2>
+    <form action="#" th:action="@{/event-form}" th:object="${scheduleEvent}" method="post">
+        <div class="form-group">
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" th:field="*{eventName}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="sports">Sports:</label>
+            <input type="text" id="sports" name="sports" th:field="*{sports}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="eventDateTime">Event Date and Time:</label>
+            <input type="datetime-local" id="eventDateTime" name="eventDateTime" th:field="*{eventDateTime}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="team">Team:</label>
+            <select id="team" name="team.id" th:field="*{team}" class="form-control" required>
+                <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.teamName}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a th:href="@{/team-form}" class="btn btn-secondary mt-3">Go to Team Form</a>
+    <a th:href="@{/team-details}" class="btn btn-secondary mt-3">Go to Team Details</a>
+    <a th:href="@{/event-details}" class="btn btn-secondary mt-3">Go to Event Details</a>
+</div>
+</body>
+
+</html>

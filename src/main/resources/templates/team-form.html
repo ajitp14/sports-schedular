@@ -1,0 +1,32 @@
+<!-- src/main/resources/templates/team-form.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5 mb-4">Team Form</h2>
+    <!-- Display error alert if duplicate team name -->
+    <div th:if="${#request.getParameter('error') == 'duplicate'}" class="alert alert-danger">
+        Duplicate team name. Please enter a unique team name.
+    </div>
+
+    <form th:action="@{/team-form}" th:object="${team}" method="post">
+        <div class="form-group">
+            <label for="teamName">Team Name:</label>
+            <input type="text" id="teamName" name="teamName" th:field="*{teamName}" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a th:href="@{/team-details}" target="_blank" class="btn btn-secondary mt-3">Go to Team Details</a>
+    <a th:href="@{/event-form}" target="_blank" class="btn btn-secondary mt-3">Go to Event Form</a>
+    <a th:href="@{/event-details}" target="_blank" class="btn btn-secondary mt-3">Go to Event Details</a>
+</div>
+</body>
+</html>
+

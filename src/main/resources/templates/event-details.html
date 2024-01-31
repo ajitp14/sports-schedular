@@ -1,0 +1,37 @@
+<!-- src/main/resources/templates/event-details.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Event Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Schedule Event Details</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Sports</th>
+            <th>Team</th>
+            <th>Event Name</th>
+            <th>Event Date and Time</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="event : ${events}">
+            <td th:text="${event.sports}"></td>
+            <td th:text="${event.team.teamName}"></td>
+            <td th:text="${event.eventName}"></td>
+            <td th:text="${event.eventDateTime}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/team-form}" class="btn btn-secondary mt-3">Go to Team Form</a>
+    <a th:href="@{/event-form}" class="btn btn-secondary mt-3">Go to Event Form</a>
+    <a th:href="@{/team-details}" class="btn btn-secondary mt-3">Go to Team Details</a>
+</div>
+</body>
+</html>

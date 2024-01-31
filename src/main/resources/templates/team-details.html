@@ -1,0 +1,33 @@
+<!-- src/main/resources/templates/team-details.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Team Details</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Team Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="team : ${teams}">
+            <td th:text="${team.id}"></td>
+            <td th:text="${team.teamName}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/team-form}" target="_blank" class="btn btn-secondary mt-3">Go to Team Form</a>
+    <a th:href="@{/event-form}" target="_blank" class="btn btn-secondary mt-3">Go to Event Form</a>
+    <a th:href="@{/event-details}" target="_blank" class="btn btn-secondary mt-3">Go to Event Details</a>
+</div>
+</body>
+</html>
