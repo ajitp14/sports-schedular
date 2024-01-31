@@ -4,6 +4,8 @@ import ajit.pailwan.sports.calender.entity.ScheduleEvent;
 import ajit.pailwan.sports.calender.repository.ScheduleEventRepository;
 import ajit.pailwan.sports.calender.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,9 +43,15 @@ public class ScheduleEventController {
     }
 
     @GetMapping("/event-details")
-    public String showEventDetails(Model model) {
-        List<ScheduleEvent> events = scheduleEventRepository.findAllByOrderByEventStartDateTimeAsc();
-        model.addAttribute("events", scheduleEventRepository.findAll());
+    public String showEventDetails(@RequestParam(defaultValue = "0") int page,Model model) {
+        int pageSize = 10;
+        // Retrieve events sorted by start date time in ascending order and paginated
+        Page<ScheduleEvent> eventPage = scheduleEventRepository.findAllByOrderByEventStartDateTimeAsc(PageRequest.of(page, pageSize));
+        List<ScheduleEvent> events = eventPage.getContent();
+        model.addAttribute("events", events);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", eventPage.getTotalPages());
+
         return "event-details";
     }
 }
