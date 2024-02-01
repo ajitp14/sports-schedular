@@ -3,14 +3,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Schedule Event Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Schedule Form</title>
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Sports Scheduler</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/team-form">Sports Scheduler</a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarNav" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -29,37 +35,34 @@
 </nav>
 
 <div class="container mt-5">
-    <h2>Schedule Event Form</h2>
-    <form action="#" th:action="@{/event-form}" th:object="${scheduleEvent}" method="post">
+    <h2>Schedule Form</h2>
+    <form action="#" method="post" th:action="@{/event-form}" th:object="${scheduleEvent}">
         <div class="form-group">
             <label for="team">Team:</label>
-            <select id="team" name="team.id" th:field="*{team}" class="form-control" required>
-                <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.teamName}"></option>
+            <select class="form-control" id="team" name="team.id" required th:field="*{team}">
+                <option th:each="team : ${teams}" th:text="${team.teamName}" th:value="${team.id}"></option>
             </select>
         </div>
         <div class="form-group">
             <label for="eventName">Event Name:</label>
-            <input type="text" id="eventName" name="eventName" th:field="*{eventName}" class="form-control" required>
+            <input class="form-control" id="eventName" name="eventName" required th:field="*{eventName}" type="text">
         </div>
         <div class="form-group">
             <label for="sports">Sports:</label>
-            <input type="text" id="sports" name="sports" th:field="*{sports}" class="form-control" required>
+            <input class="form-control" id="sports" name="sports" required th:field="*{sports}" type="text">
         </div>
         <div class="form-group">
             <label for="eventStartDateTime">Event Start Date and Time:</label>
-            <input type="datetime-local" id="eventStartDateTime" name="eventStartDateTime" th:field="*{eventStartDateTime}" class="form-control" required>
+            <input class="form-control" id="eventStartDateTime" name="eventStartDateTime"
+                   required th:field="*{eventStartDateTime}" type="datetime-local">
         </div>
         <div class="form-group">
             <label for="eventEndDateTime">Event End Date and Time:</label>
-            <input type="datetime-local" id="eventEndDateTime" name="eventEndDateTime" th:field="*{eventEndDateTime}" class="form-control" required>
+            <input class="form-control" id="eventEndDateTime" name="eventEndDateTime" required
+                   th:field="*{eventEndDateTime}" type="datetime-local">
         </div>
-
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
-
-
 </div>
 </body>
-
 </html>

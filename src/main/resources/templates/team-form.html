@@ -4,12 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Team Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Sports Scheduler</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/team-form">Sports Scheduler</a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarNav" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -29,20 +35,17 @@
 <div class="container">
     <h2 class="mt-5 mb-4">Team Form</h2>
     <!-- Display error alert if duplicate team name -->
-    <div th:if="${#request.getParameter('error') == 'duplicate'}" class="alert alert-danger">
+    <div class="alert alert-danger" th:if="${#request.getParameter('error') == 'duplicate'}">
         Duplicate team name. Please enter a unique team name.
     </div>
-
-    <form th:action="@{/team-form}" th:object="${team}" method="post">
+    <form method="post" th:action="@{/team-form}" th:object="${team}">
         <div class="form-group">
             <label for="teamName">Team Name:</label>
-            <input type="text" id="teamName" name="teamName" th:field="*{teamName}" class="form-control" required>
+            <input class="form-control" id="teamName" name="teamName" required th:field="*{teamName}" type="text">
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
-
-
 </div>
 </body>
 </html>

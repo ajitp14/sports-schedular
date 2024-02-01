@@ -1,0 +1,70 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #d0bdf4;
+}
+
+/* Style for page navigation buttons */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination .page-item a {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.pagination .page-item a:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.pagination .page-item.disabled a {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+.pagination .page-item.active a {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+h2
+{
+    font-family: 'Impact', sans-serif;
+    font-size: 30px;
+    color: #001f3f;
+}
+
+.navbar {
+    background-color: #333;
+    padding: 10px;
+}
+
+/* Navbar text styles */
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+
+.navbar a:hover {
+    color: #ffcc00;
+}

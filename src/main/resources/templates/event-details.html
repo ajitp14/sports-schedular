@@ -4,13 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Schedule Event Details</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Sports Scheduler</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/team-form">Sports Scheduler</a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarNav" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -28,15 +34,15 @@
     </div>
 </nav>
 <div class="container mt-5">
-    <h2>Schedule Event Details</h2>
+    <h2>Schedule Details</h2>
     <table class="table">
         <thead>
         <tr>
             <th>Sports</th>
             <th>Team</th>
-            <th>Event Name</th>
-            <th>Event Start Date and Time</th>
-            <th>Event End Date and Time</th>
+            <th>Info</th>
+            <th>Start Date and Time</th>
+            <th>End Date and Time</th>
         </tr>
         </thead>
         <tbody>
@@ -57,7 +63,8 @@
             <li class="page-item" th:classappend="${currentPage > 0} ? '' : disabled">
                 <a class="page-link" th:href="@{/event-details(page=${currentPage - 1})}">Previous</a>
             </li>
-            <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" class="page-item" th:classappend="${currentPage == i} ? active">
+            <li class="page-item" th:classappend="${currentPage == i} ? active"
+                th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
                 <a class="page-link" th:href="@{/event-details(page=${i})}" th:text="${i + 1}"></a>
             </li>
             <li class="page-item" th:classappend="${currentPage < totalPages - 1} ? '' : disabled">
@@ -68,7 +75,9 @@
             </li>
         </ul>
     </nav>
-
+    <form method="post" th:action="@{/delete-event-details}">
+        <button type="submit">Delete Past Events</button>
+    </form>
 </div>
 </body>
 </html>

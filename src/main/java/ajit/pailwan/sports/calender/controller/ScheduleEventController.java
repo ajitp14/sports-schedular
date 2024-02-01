@@ -9,13 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ScheduleEventController {
@@ -53,5 +50,14 @@ public class ScheduleEventController {
         model.addAttribute("totalPages", eventPage.getTotalPages());
 
         return "event-details";
+    }
+
+    @PostMapping("/delete-event-details")
+    public String deleteEventDetails() {
+        List<ScheduleEvent> allEvents = scheduleEventRepository.findAll();
+        List<ScheduleEvent> pastEvents = allEvents.stream().filter(scheduleEvent -> scheduleEvent.getEventEndDateTime().isBefore(LocalDateTime.now())).
+                collect(Collectors.toList());
+        scheduleEventRepository.deleteAll(pastEvents);
+        return "redirect:/event-details";
     }
 }
