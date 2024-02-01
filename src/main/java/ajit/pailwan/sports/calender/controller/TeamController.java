@@ -3,11 +3,15 @@ package ajit.pailwan.sports.calender.controller;
 import ajit.pailwan.sports.calender.entity.Team;
 import ajit.pailwan.sports.calender.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class TeamController {
@@ -31,8 +35,13 @@ public class TeamController {
     }
 
     @GetMapping("/team-details")
-    public String showTeamDetails(Model model) {
-        model.addAttribute("teams", teamRepository.findAll());
+    public String showTeamDetails(@RequestParam(defaultValue = "0") int page, Model model) {
+        int pageSize = 9;
+        Page<Team> teamPage = teamRepository.findAll(PageRequest.of(page, pageSize));
+        List<Team> teams = teamPage.getContent();
+        model.addAttribute("teams", teams);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", teamPage.getTotalPages());
         return "team-details";
     }
 }
