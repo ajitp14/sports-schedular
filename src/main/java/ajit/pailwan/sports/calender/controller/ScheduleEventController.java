@@ -34,6 +34,9 @@ public class ScheduleEventController {
                                   @RequestParam("eventStartDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime eventStartDateTime,
                                   @RequestParam("eventEndDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime eventEndDateTime) {
         scheduleEvent.setEventStartDateTime(eventStartDateTime);
+        if(eventEndDateTime.isBefore(eventStartDateTime)){
+            return "redirect:/event-form?error=duplicate";
+        }
         scheduleEvent.setEventEndDateTime(eventEndDateTime);
         scheduleEventRepository.save(scheduleEvent);
         return "redirect:/event-details";
