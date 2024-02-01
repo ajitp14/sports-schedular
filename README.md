@@ -1,3 +1,5 @@
+# Sports Scheduler
+
 This simple spring boot application has total 5 services. It can be used to create upcoming events calender for your favourite sports teams.
 
 1) Team Form - To create entry for the team.
