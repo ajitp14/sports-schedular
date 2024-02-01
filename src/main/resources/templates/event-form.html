@@ -56,6 +56,10 @@
             <input class="form-control" id="eventStartDateTime" name="eventStartDateTime"
                    required th:field="*{eventStartDateTime}" type="datetime-local">
         </div>
+        <!-- Display error alert if duplicate team name -->
+        <div class="alert alert-danger" th:if="${#request.getParameter('error') == 'duplicate'}">
+            Event end date should not be before event start date.
+        </div>
         <div class="form-group">
             <label for="eventEndDateTime">Event End Date and Time:</label>
             <input class="form-control" id="eventEndDateTime" name="eventEndDateTime" required
